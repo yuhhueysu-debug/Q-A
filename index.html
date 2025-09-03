@@ -73,6 +73,7 @@
             font-size: 18px;
             display: block;
             padding: 5px 10px;
+            cursor: pointer;
         }
         .menu-list a:hover {
             color: #004d40;
@@ -82,13 +83,13 @@
         .collapsible-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            transition: max-height 0.3s ease-out, padding-top 0.3s ease-out;
             padding-left: 20px;
             padding-top: 0;
             font-size: 16px;
         }
         .collapsible-content.open {
-            max-height: 500px; /* Adjust as needed */
+            max-height: 1000px; /* Adjusted to a larger value to ensure content fits */
             padding-top: 10px;
         }
         .no-results {
@@ -117,7 +118,7 @@
             </h3>
             <ul class="menu-list">
                 <li data-search-term="進館須知">
-                    <a href="#">進館須知</a>
+                    <a class="toggle-link">進館須知</a>
                     <div class="collapsible-content">
                         <p><strong>Q1 本院同仁入館規定？</strong><br>本院員工及正在本院實見習之醫護相關人員，入館時應配戴識別證。</p>
                         <p><strong>Q2 請問院外讀者可以使用中榮圖書館嗎？</strong><br>院外人士入館得閱覽及複印本館館藏，可使用視聽資料、公用電腦設備、資料庫及其它本館限定之設備（公用電腦不可玩任何電腦遊戲）。院外人士符合下列身份者，應主動出示所列有效身份證明文件，方得入館：<br>(1)醫療人員：單位證件或名片及身分證件。<br>(2)行政院國軍退除役官兵輔導委員會所屬醫療相關機構人員：服務單位證件。<br>(3)參加本院舉辦之各項學術會議及研習班者：通知單或名牌。<br>(4)與本院有合作研究計劃之研究人員：身分證件及本院參與該計劃者出具之證明。<br>(5)本院員工之配偶及直系親屬（年滿15歲以上）可由本院員工親自陪同，或攜帶員工識別證影本及身份證件，入館閱覽。<br>(6)年滿15歲之院外人士可憑有照片之證件換取閱覽證後入館閱覽，離館時需繳回閱覽證，同時入館人數以不超過10人為限。<br>(7)院外人士得依相關規定入館利用圖書館資源，但不可借書。</p>
@@ -126,7 +127,7 @@
                     </div>
                 </li>
                 <li data-search-term="借還書">
-                    <a href="#">借還書</a>
+                    <a class="toggle-link">借還書</a>
                     <div class="collapsible-content">
                         <p><strong>一、借閱對象及借書程序</strong><br>本館書刊、資料、設備外借對象為本院員工、實見習醫事人員及進修人員等，借閱資料時需至流通台辦理。</p>
                         <p><strong>二、外借與館內使用規定</strong><br>可借閱資料類型包含已上架之圖書、光碟、DVD、期刊、雜誌、漫畫等。借閱件數合計50件，借期為2週，續借次數為10次，續借應於到期前辦理。若有人預約、續借次數已滿或有違規事項，則不得續借。</p>
@@ -136,70 +137,8 @@
                     </div>
                 </li>
                 <li data-search-term="個人借閱狀況">
-                    <a href="#">個人借閱狀況</a>
+                    <a class="toggle-link">個人借閱狀況</a>
                     <div class="collapsible-content">
                         <p><strong>Q1 如何得知個人借閱狀況?</strong><br>點選個人借閱/續借、預約(限院內)後，輸入個人之卡號及密碼，依畫面指示即可自行查詢。</p>
                         <p><strong>Q2 當我要在系統查看我的借閱狀況時，系統指示要輸入「讀者證號及密碼」，請問讀者證號及密碼是指什麼？</strong><br>請依下列身分登入帳密：<br>本院員工/見、實習醫師：識別證卡號，密碼預設值為身分證前4碼 +識別證卡號<br>護理部實習生(及護生老師)：身份證號，密碼為身份證後4碼+單位<br>各職類實習生：身份證號，密碼為身份證前4碼加實習身份(4碼)<br>到院使用訪客(限院內連線使用)：帳號 library，密碼 library</p>
-                        <p><strong>Q3 我的個人密碼忘記了怎麼辦？</strong><br>若忘記密碼，請親自到圖書館流通櫃台，由館員刪除舊密碼，或電洽分機3915刪除現有密碼，再自行重設。</p>
-                    </div>
-                </li>
-                <li data-search-term="開閉館時間">
-                    <a href="#">開閉館時間</a>
-                    <div class="collapsible-content">
-                        <p><strong>Q: 請問圖書館地點及開閉館時間？</strong><br>(1)圖書館位於急診大樓七樓。<br>(2)開館時間：<br>週一至週五：8:30 - 18:30 (中午時間照常開館)<br>週六、 日、國定假日：不開放</p>
-                    </div>
-                </li>
-                <li data-search-term="預約">
-                    <a href="#">預約</a>
-                    <div class="collapsible-content">
-                        <p><strong>Q1 圖書預約的冊數為何？新書也可以預約嗎?</strong><br>圖書預約冊數上限為99冊；圖書借出時可預約，展示中的新書亦可預約。</p>
-                        <p><strong>Q2 請問預約書到館多久沒借出，會被取消預約？</strong><br>預約書到館通知讀者後，保留3天，若於期限內未借出，則將圖書上架或轉至下一位預約者。</p>
-                        <p><strong>Q3 如何從線上辦理圖書預約？</strong><br>點選館藏資源查詢後，依讀者需要鍵入檢索點查到所需資料後，依系統畫面指示，點選資料之登錄號，輸入個人之讀者證號(卡號)及密碼後即可辦理預約。密碼預設值為身分證前四碼+卡號，共8碼(本院員工)，其餘身分請參考登入說明。</p>
-                        <p><strong>Q4 可否幫我預約某本書？</strong><br>因本館圖書館系統預約功能十分簡便，請讀者自行在線上公用目錄預約。圖書館讀者個人檔案中一定要有電子郵件信箱方得預約。</p>
-                        <p><strong>Q5 如何取消預約？</strong><br>進入個人借閱/續借、預約(限院內)後，輸入個人之卡號及密碼後即可自行取消預約。</p>
-                        <p><strong>Q6 預約圖書到館怎麼知道？</strong><br>預約圖書一經歸還，本館即發送通知至讀者email信箱。請讀者務必連結至讀者個人資料查詢，點選讀者基本資料，填入email信箱資料。</p>
-                    </div>
-                </li>
-                <li data-search-term="離職手續">
-                    <a href="#">離職手續</a>
-                    <div class="collapsible-content">
-                        <p><strong>Q1 如何辦理離職手續？</strong><br>(1)請持「離職單」於開館時間（週一至週五8:30-18:30）至流通櫃台辦理，並先確認是否書刊都還清。<br>(2)線上辦理離職程序之同仁，請來電分機3915，確認您無相關未還圖書或違規情事後，即可完成。</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="section-container" data-search-term="館藏與設備 寄物須知 電子期刊 電子書 館際合作 資料庫 本館館藏 院外連線方式說明 空間及研究小間">
-            <h3 class="section-title">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/OOjs_UI_icon_collections-invert.svg" alt="館藏與設備">
-                館藏與設備
-            </h3>
-            <ul class="menu-list">
-                <li data-search-term="寄物須知">
-                    <a href="#">寄物須知</a>
-                    <div class="collapsible-content">
-                        <p>持職別證(或實習證)，至流通台借鑰匙。<br>請愛惜使用，櫃內勿放置飲料。<br>※ 請於當日閉館前取出個人物品，不可存放過夜，否則需繳處理費每日5元。</p>
-                    </div>
-                </li>
-                <li data-search-term="電子期刊">
-                    <a href="#">電子期刊</a>
-                    <div class="collapsible-content">
-                        <p><strong>Q1 如何查知本館是否有某本期刊?</strong><br>透過圖書館首頁，圖書館資源整合快速檢索，利用書刊名查詢檢索；請注意期刊之相關註記資訊，包括供應商平台、全文年代及使用說明等。</p>
-                        <p><strong>Q2 進入電子期刊要看全文時，若需要帳號密碼，要輸入什麼？</strong><br>電子期刊皆以限定IP的方式於在院區內使用，無需密碼。在院外，請利用VPN方式連線；VPN設定請參考院外使用電子資源。</p>
-                        <p><strong>Q3 如何推薦訂購西文期刊？</strong><br>請至本館網頁 – 點選推薦圖書辦法，列印紙本『期刊介購單』，填寫後，交由圖書館辦理。</p>
-                        <p><strong>Q4 如何推薦訂購中文期刊？</strong><br>請至本館網頁 – 點選推薦圖書辦法，列印紙本『期刊介購單』，填寫後，交由圖書館辦理。</p>
-                    </div>
-                </li>
-                <li data-search-term="電子書">
-                    <a href="#">電子書</a>
-                    <div class="collapsible-content">
-                        <p><strong>Q1.查詢院內有哪些電子書?</strong><br>查詢特定電子書：透過圖書館首頁，圖書館資源整合快速檢索，利用書刊名查詢檢索。<br>電子書內文全文查詢：請分別連線至各電子書資料庫網站進行檢索。目前本館主要電子書來源為Harrison's Online、ClinicalKey等。</p>
-                        <p><strong>Q2.電子書之使用方式為何？</strong><br>Harrison's Online：可線上查詢閱覽及提供PDF下載。<br>ClinicalKey：內容有Elsevier出版之1,100多種醫學各分科電子書，大多可全文PDF下載。<br>ProQuest 電子書：約有12,000種電子書，若要雲端儲存或整本下載，請先於網站註冊。<br>SpringerNature、Washington Manual Book Collection 2021及Wiley電子書： 提供線上查詢閱覽及提供PDF下載(毋需帳密)。</p>
-                    </div>
-                </li>
-                <li data-search-term="館際合作">
-                    <a href="#">館際合作</a>
-                    <div class="collapsible-content">
-                        <p><strong>Q1 館際合作提供那些服務?</strong><br>向他館申請複印期刊，國內及國外均可提供複印服務。圖書部份則依各合作館政策不同而有不同作法提供外借。</p>
-                        <p><strong>Q2 如何申請館際合作?</strong><br>請依下列步驟進行：<br>a.查詢本館電子資源系統，確定本館有無該本期刊。<br>b.查全國期刊聯合目錄暨館際合作系統，確定他館館藏所在。<br>c.在館際合作系統上正確填寫『申請單』。<br>d.等候通知取件。</p>
-                        <p><strong>
+                        <p><strong>Q3 我的個人密碼忘記了怎麼辦？</strong><br>若忘記密
