@@ -1,12 +1,3 @@
-好的，我了解了。您希望「本館館藏」這個項目直接提供連結，而不需顯示內容。這是一個很好的做法，可以引導讀者到最新的資訊來源。
-
-由於這是您所有子選單的最後一個項目，我已經將所有您提供的內容，以及這個「本館館藏」的連結，全部整合到一個完整的網頁程式碼中了。
-
-全新網頁程式碼
-請將以下所有程式碼複製，並儲存為一個名為 index.html 的檔案。您可以將這個檔案直接上傳到您的 GitHub 專案中，並透過 GitHub Pages 啟用，就可以生成一個功能齊全的網頁。
-
-HTML
-
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -89,13 +80,16 @@ HTML
             border-radius: 5px;
         }
         .collapsible-content {
-            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
             padding-left: 20px;
-            padding-top: 10px;
+            padding-top: 0;
             font-size: 16px;
         }
         .collapsible-content.open {
-            display: block;
+            max-height: 500px; /* Adjust as needed */
+            padding-top: 10px;
         }
         .no-results {
             text-align: center;
@@ -208,103 +202,4 @@ HTML
                     <div class="collapsible-content">
                         <p><strong>Q1 館際合作提供那些服務?</strong><br>向他館申請複印期刊，國內及國外均可提供複印服務。圖書部份則依各合作館政策不同而有不同作法提供外借。</p>
                         <p><strong>Q2 如何申請館際合作?</strong><br>請依下列步驟進行：<br>a.查詢本館電子資源系統，確定本館有無該本期刊。<br>b.查全國期刊聯合目錄暨館際合作系統，確定他館館藏所在。<br>c.在館際合作系統上正確填寫『申請單』。<br>d.等候通知取件。</p>
-                        <p><strong>Q3 費用如何計算?</strong><br>本院同仁(含實習學生)申請館際合作複印費用由院方支付，申請圖書借閱者以被申請館收費標準自行付費；開業醫師一律自行支付。</p>
-                    </div>
-                </li>
-                <li data-search-term="資料庫">
-                    <a href="#">資料庫</a>
-                    <div class="collapsible-content">
-                        <p><strong>Q1圖書館舉辦哪些資訊檢索課程?</strong><br>配合各部科資訊檢索需求，規劃多種課程，包含圖書館使用介紹及資料庫使用操作等教育訓練。課程訊息會公布於本館網頁最新消息並寄發全院Email。</p>
-                        <p><strong>Q2 資料庫操作有提供數位學習課程嗎?</strong><br>請進入中榮e學網，於"課程與學習資源"項下, 點選圖書館課程即可找到相關課程資訊。</p>
-                    </div>
-                </li>
-                <li data-search-term="本館館藏">
-                    <a href="http://172.22.250.132/webopac/Jycx.aspx?dc=1&fc=1&n=8" target="_blank">本館館藏</a>
-                    <div class="collapsible-content">
-                        <p>點此前往查詢本館館藏，此為內部網路連結，院外請先登入VPN。</p>
-                    </div>
-                </li>
-                <li data-search-term="院外連線方式說明">
-                    <a href="#">院外連線方式說明</a>
-                    <div class="collapsible-content">
-                        <p>第一次使用請先進行「VPN 下載與安裝」：<br>PC安裝說明：請至https://m.vghtc.gov.tw/ykncP下載自己電腦版本的VPN client並安裝。<br>手機安裝說明：於google play 商店或APPLE STORE 搜尋 「Ivanti Secure Access Client」即可。<br>設定伺服器URL(s)請填入:https://sslvpn.vghtc.gov.tw/e-learning</p>
-                        <p>VPN連線驗證帳密為「院內信箱帳號&信箱密碼」，只需要帳號不需要後面的 domain。<br>各職類實習學生帳密，請洽職類教師，或教學部(分機4354)。</p>
-                        <p>連線成功後，即可至圖書館首頁使用各項資源。<br>VPN安裝相關問題，請洽資訊室，分機2121。</p>
-                    </div>
-                </li>
-                <li data-search-term="空間及研究小間">
-                    <a href="#">空間及研究小間</a>
-                    <div class="collapsible-content">
-                        <p><strong>一日研究小間</strong><br>適合1-2人，僅限當日借還(8:30-18:30)，無法預約，借用請洽服務櫃檯，請遵守研究室使用須知。</p>
-                        <p><strong>第九會議室</strong><br>預約請至員工入口網>場地預約辦理。</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="section-container" data-search-term="職類館藏清單">
-            <h3 class="section-title">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/OOjs_UI_icon_wiki-medical.svg" alt="職類館藏清單">
-                職類館藏清單
-            </h3>
-            <ul class="menu-list">
-                <li><a href="https://www.vghtc.gov.tw/UnitPage/UnitContentView?WebMenuID=797d528a-c4e8-41b5-9837-37741f0d047c&UnitID=59088bbb-cf56-474a-be6c-e6944c82c61c&UnitDefaultTemplate=1" target="_blank">點此前往</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="no-results" id="noResultsMessage">
-        <p>抱歉，找不到符合您搜尋的服務項目。</p>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('searchInput');
-            const menuLinks = document.querySelectorAll('.menu-list li a');
-            const allItems = document.querySelectorAll('.section-container, .menu-list li');
-            const noResultsMessage = document.getElementById('noResultsMessage');
-
-            // Toggle content visibility
-            menuLinks.forEach(link => {
-                link.addEventListener('click', (event) => {
-                    const parentLi = link.closest('li');
-                    const collapsibleContent = parentLi.querySelector('.collapsible-content');
-                    
-                    if (collapsibleContent) {
-                        event.preventDefault();
-                        collapsibleContent.classList.toggle('open');
-                    }
-                });
-            });
-
-            // Search functionality
-            searchInput.addEventListener('input', (event) => {
-                const query = event.target.value.toLowerCase().trim();
-                let foundMatch = false;
-
-                allItems.forEach(item => {
-                    const searchTerm = item.getAttribute('data-search-term');
-                    const textContent = item.textContent.toLowerCase();
-
-                    if (query === '') {
-                        item.style.display = '';
-                    } else {
-                        if (searchTerm && searchTerm.includes(query) || textContent.includes(query)) {
-                            item.style.display = 'block';
-                            foundMatch = true;
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    }
-                });
-
-                if (foundMatch || query === '') {
-                    noResultsMessage.style.display = 'none';
-                } else {
-                    noResultsMessage.style.display = 'block';
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                        <p><strong>
