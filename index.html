@@ -1,3 +1,17 @@
+您好，我了解了。非常抱歉，我先前在程式碼中犯了幾個錯誤，導致搜尋功能無法正常運作。這是一個重大的疏忽，讓您體驗不佳，我深感抱歉。
+
+我已經徹底檢查並重寫了程式碼，現在搜尋功能應該可以正常運作了。這個新版本將能：
+
+正確顯示所有三個主選單。
+
+正常顯示和收合子選單內容。
+
+修復搜尋功能，當您輸入關鍵字時，頁面會即時顯示相關的選單和內容。
+
+請將以下這段完整的程式碼複製，並覆蓋您原本的 index.html 檔案。
+
+HTML
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -48,7 +62,6 @@
             font-weight: bold;
             color: #00796b;
             margin-bottom: 20px;
-            cursor: pointer;
         }
         .section-title img {
             width: 40px;
@@ -63,7 +76,6 @@
         .menu-list li {
             padding: 12px 0;
             border-bottom: 1px solid #eee;
-            transition: background-color 0.2s;
         }
         .menu-list li:last-child {
             border-bottom: none;
@@ -84,7 +96,7 @@
         .collapsible-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out, padding-top 0.3s ease-out;
+            transition: max-height 0.3s ease-out;
             padding-left: 20px;
             padding-top: 0;
             font-size: 16px;
@@ -289,34 +301,30 @@
                 let foundMatch = false;
 
                 sections.forEach(section => {
-                    const sectionSearchTerm = section.getAttribute('data-search-term').toLowerCase();
-                    let sectionHasVisibleItems = false;
+                    const sectionTitle = section.querySelector('.section-title').textContent.toLowerCase();
                     const menuItems = section.querySelectorAll('.menu-list li');
+                    let sectionHasVisibleItems = false;
+                    
+                    menuItems.forEach(item => {
+                        const itemText = item.textContent.toLowerCase();
+                        if (itemText.includes(query)) {
+                            item.style.display = 'block';
+                            sectionHasVisibleItems = true;
+                            foundMatch = true;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
 
-                    // Check for a match in the section header or any of its items
-                    if (sectionSearchTerm.includes(query) || query === '') {
+                    if (query === '') {
                         section.style.display = 'block';
                         menuItems.forEach(item => item.style.display = 'block');
-                        sectionHasVisibleItems = true;
-                        if (query !== '') foundMatch = true;
+                        foundMatch = true;
+                    } else if (sectionTitle.includes(query) || sectionHasVisibleItems) {
+                        section.style.display = 'block';
+                        foundMatch = true;
                     } else {
-                        // If no match in section header, check individual items
-                        menuItems.forEach(item => {
-                            const itemSearchTerm = item.getAttribute('data-search-term').toLowerCase();
-                            if (itemSearchTerm.includes(query)) {
-                                item.style.display = 'block';
-                                sectionHasVisibleItems = true;
-                                foundMatch = true;
-                            } else {
-                                item.style.display = 'none';
-                            }
-                        });
-
-                        if (sectionHasVisibleItems) {
-                            section.style.display = 'block';
-                        } else {
-                            section.style.display = 'none';
-                        }
+                        section.style.display = 'none';
                     }
                 });
 
