@@ -1,9 +1,18 @@
+好的，我了解了。您希望「本館館藏」這個項目直接提供連結，而不需顯示內容。這是一個很好的做法，可以引導讀者到最新的資訊來源。
+
+由於這是您所有子選單的最後一個項目，我已經將所有您提供的內容，以及這個「本館館藏」的連結，全部整合到一個完整的網頁程式碼中了。
+
+全新網頁程式碼
+請將以下所有程式碼複製，並儲存為一個名為 index.html 的檔案。您可以將這個檔案直接上傳到您的 GitHub 專案中，並透過 GitHub Pages 啟用，就可以生成一個功能齊全的網頁。
+
+HTML
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>台中榮總醫學圖書館 - 常見問題集</title>
+    <title>台中榮總醫學圖書館 - 服務總覽</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -12,14 +21,15 @@
             max-width: 800px;
             margin: 20px auto;
             padding: 0 20px;
+            background-color: #f8f9fa;
         }
-        h1 {
-            color: #004d40;
+        h1, h2 {
             text-align: center;
+            color: #004d40;
         }
         .search-container {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         .search-container input[type="text"] {
             width: 80%;
@@ -31,65 +41,61 @@
             transition: border-color 0.3s;
         }
         .search-container input[type="text"]:focus {
-            border-color: #004d40;
+            border-color: #00796b;
         }
-        .faq-section {
-            margin-bottom: 30px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
+        .section-container {
+            margin-bottom: 40px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-        .faq-section-title {
+        .section-title {
             display: flex;
             align-items: center;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             color: #00796b;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-        .faq-section-title img {
-            width: 35px;
-            height: 35px;
-            margin-right: 10px;
+        .section-title img {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
         }
-        .faq-item {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
-        .question {
-            padding: 15px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            color: #333;
+        .menu-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
             transition: background-color 0.2s;
         }
-        .question:hover {
-            background-color: #f5f5f5;
+        .menu-list li:last-child {
+            border-bottom: none;
         }
-        .question .icon {
-            font-size: 20px;
-            transition: transform 0.3s;
-        }
-        .answer {
-            padding: 0 20px 15px;
-            display: none;
-            color: #555;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        .answer p {
-            margin: 0;
-            padding-top: 10px;
-        }
-        .faq-item.active .answer {
+        .menu-list a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
             display: block;
+            padding: 5px 10px;
         }
-        .faq-item.active .question .icon {
-            transform: rotate(180deg);
+        .menu-list a:hover {
+            color: #004d40;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .collapsible-content {
+            display: none;
+            padding-left: 20px;
+            padding-top: 10px;
+            font-size: 16px;
+        }
+        .collapsible-content.open {
+            display: block;
         }
         .no-results {
             text-align: center;
@@ -98,110 +104,197 @@
             padding: 50px 0;
             display: none;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
 
     <h1>台中榮總醫學圖書館</h1>
-    <h2>常見問題集</h2>
+    <h2>服務總覽</h2>
 
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="輸入關鍵字搜尋，例如：借書、資料庫">
+        <input type="text" id="searchInput" placeholder="輸入關鍵字搜尋">
     </div>
 
-    <div id="faqList">
-        <div class="faq-section">
-            <h3 class="faq-section-title">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/OOjs_UI_icon_book-library-rtl-rtl.svg" alt="閱覽與借閱">
-                閱覽與借閱
+    <div id="content">
+        <div class="section-container" data-search-term="閱覽與流通 進館須知 借還書 個人借閱狀況 開閉館時間 預約 離職手續">
+            <h3 class="section-title">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/OOjs_UI_icon_book-library-rtl-rtl.svg" alt="閱覽與流通">
+                閱覽與流通
             </h3>
-            <div class="faq-item">
-                <div class="question">如何辦理借書證？<span class="icon">&#9660;</span></div>
-                <div class="answer"><p>憑服務證、學生證等證明文件至圖書館櫃台辦理，填寫借書證申請單即可。</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="question">圖書館開館時間？<span class="icon">&#9660;</span></div>
-                <div class="answer"><p>週一至週五 08:00 - 17:00，週六、日及國定假日休館。</p></div>
-            </div>
+            <ul class="menu-list">
+                <li data-search-term="進館須知">
+                    <a href="#">進館須知</a>
+                    <div class="collapsible-content">
+                        <p><strong>Q1 本院同仁入館規定？</strong><br>本院員工及正在本院實見習之醫護相關人員，入館時應配戴識別證。</p>
+                        <p><strong>Q2 請問院外讀者可以使用中榮圖書館嗎？</strong><br>院外人士入館得閱覽及複印本館館藏，可使用視聽資料、公用電腦設備、資料庫及其它本館限定之設備（公用電腦不可玩任何電腦遊戲）。院外人士符合下列身份者，應主動出示所列有效身份證明文件，方得入館：<br>(1)醫療人員：單位證件或名片及身分證件。<br>(2)行政院國軍退除役官兵輔導委員會所屬醫療相關機構人員：服務單位證件。<br>(3)參加本院舉辦之各項學術會議及研習班者：通知單或名牌。<br>(4)與本院有合作研究計劃之研究人員：身分證件及本院參與該計劃者出具之證明。<br>(5)本院員工之配偶及直系親屬（年滿15歲以上）可由本院員工親自陪同，或攜帶員工識別證影本及身份證件，入館閱覽。<br>(6)年滿15歲之院外人士可憑有照片之證件換取閱覽證後入館閱覽，離館時需繳回閱覽證，同時入館人數以不超過10人為限。<br>(7)院外人士得依相關規定入館利用圖書館資源，但不可借書。</p>
+                        <p><strong>Q3 可以攜帶背包入館嗎？</strong><br>(1)本館備有寄物櫃，持職別證或實習證至流通台借鑰匙。<br>(2)如需將背包攜入者，進出圖書館時需至櫃檯由館員稍作檢查。</p>
+                        <p><strong>Q4 請問可以攜帶水及食物進館嗎？</strong><br>可攜帶白開水、礦泉水入館，其他飲料與食物禁止攜帶入館。</p>
+                    </div>
+                </li>
+                <li data-search-term="借還書">
+                    <a href="#">借還書</a>
+                    <div class="collapsible-content">
+                        <p><strong>一、借閱對象及借書程序</strong><br>本館書刊、資料、設備外借對象為本院員工、實見習醫事人員及進修人員等，借閱資料時需至流通台辦理。</p>
+                        <p><strong>二、外借與館內使用規定</strong><br>可借閱資料類型包含已上架之圖書、光碟、DVD、期刊、雜誌、漫畫等。借閱件數合計50件，借期為2週，續借次數為10次，續借應於到期前辦理。若有人預約、續借次數已滿或有違規事項，則不得續借。</p>
+                        <p><strong>三、逾期歸還之處理</strong><br>每逾期一日每冊(件)應繳納滯還金新臺幣五元，滯還金累計上限為一百日。逾期不得以未收到通知為由，拒絕繳納滯還金。</p>
+                        <p><strong>四、遺失、塗污、損壞之賠償</strong><br>讀者須於借期期滿前告知圖書館。可自行購買原資料或依規定賠償。</p>
+                        <p><strong>五、其他</strong><br>可預約已被外借之資料，到館後保留三日。遇圖書館盤點、修改編目等情況，得隨時索回借出資料。本院員工、代訓、進修人員及實習、見習醫師需還清所借資料後，始可辦理離職手續。</p>
+                    </div>
+                </li>
+                <li data-search-term="個人借閱狀況">
+                    <a href="#">個人借閱狀況</a>
+                    <div class="collapsible-content">
+                        <p><strong>Q1 如何得知個人借閱狀況?</strong><br>點選個人借閱/續借、預約(限院內)後，輸入個人之卡號及密碼，依畫面指示即可自行查詢。</p>
+                        <p><strong>Q2 當我要在系統查看我的借閱狀況時，系統指示要輸入「讀者證號及密碼」，請問讀者證號及密碼是指什麼？</strong><br>請依下列身分登入帳密：<br>本院員工/見、實習醫師：識別證卡號，密碼預設值為身分證前4碼 +識別證卡號<br>護理部實習生(及護生老師)：身份證號，密碼為身份證後4碼+單位<br>各職類實習生：身份證號，密碼為身份證前4碼加實習身份(4碼)<br>到院使用訪客(限院內連線使用)：帳號 library，密碼 library</p>
+                        <p><strong>Q3 我的個人密碼忘記了怎麼辦？</strong><br>若忘記密碼，請親自到圖書館流通櫃台，由館員刪除舊密碼，或電洽分機3915刪除現有密碼，再自行重設。</p>
+                    </div>
+                </li>
+                <li data-search-term="開閉館時間">
+                    <a href="#">開閉館時間</a>
+                    <div class="collapsible-content">
+                        <p><strong>Q: 請問圖書館地點及開閉館時間？</strong><br>(1)圖書館位於急診大樓七樓。<br>(2)開館時間：<br>週一至週五：8:30 - 18:30 (中午時間照常開館)<br>週六、 日、國定假日：不開放</p>
+                    </div>
+                </li>
+                <li data-search-term="預約">
+                    <a href="#">預約</a>
+                    <div class="collapsible-content">
+                        <p><strong>Q1 圖書預約的冊數為何？新書也可以預約嗎?</strong><br>圖書預約冊數上限為99冊；圖書借出時可預約，展示中的新書亦可預約。</p>
+                        <p><strong>Q2 請問預約書到館多久沒借出，會被取消預約？</strong><br>預約書到館通知讀者後，保留3天，若於期限內未借出，則將圖書上架或轉至下一位預約者。</p>
+                        <p><strong>Q3 如何從線上辦理圖書預約？</strong><br>點選館藏資源查詢後，依讀者需要鍵入檢索點查到所需資料後，依系統畫面指示，點選資料之登錄號，輸入個人之讀者證號(卡號)及密碼後即可辦理預約。密碼預設值為身分證前四碼+卡號，共8碼(本院員工)，其餘身分請參考登入說明。</p>
+                        <p><strong>Q4 可否幫我預約某本書？</strong><br>因本館圖書館系統預約功能十分簡便，請讀者自行在線上公用目錄預約。圖書館讀者個人檔案中一定要有電子郵件信箱方得預約。</p>
+                        <p><strong>Q5 如何取消預約？</strong><br>進入個人借閱/續借、預約(限院內)後，輸入個人之卡號及密碼後即可自行取消預約。</p>
+                        <p><strong>Q6 預約圖書到館怎麼知道？</strong><br>預約圖書一經歸還，本館即發送通知至讀者email信箱。請讀者務必連結至讀者個人資料查詢，點選讀者基本資料，填入email信箱資料。</p>
+                    </div>
+                </li>
+                <li data-search-term="離職手續">
+                    <a href="#">離職手續</a>
+                    <div class="collapsible-content">
+                        <p><strong>Q1 如何辦理離職手續？</strong><br>(1)請持「離職單」於開館時間（週一至週五8:30-18:30）至流通櫃台辦理，並先確認是否書刊都還清。<br>(2)線上辦理離職程序之同仁，請來電分機3915，確認您無相關未還圖書或違規情事後，即可完成。</p>
+                    </div>
+                </li>
+            </ul>
         </div>
 
-        <div class="faq-section">
-            <h3 class="faq-section-title">
+        <div class="section-container" data-search-term="館藏與設備 寄物須知 電子期刊 電子書 館際合作 資料庫 本館館藏 院外連線方式說明 空間及研究小間">
+            <h3 class="section-title">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/OOjs_UI_icon_collections-invert.svg" alt="館藏與設備">
                 館藏與設備
             </h3>
-            <div class="faq-item">
-                <div class="question">如何查詢圖書館館藏？<span class="icon">&#9660;</span></div>
-                <div class="answer"><p>可至圖書館入口的公共檢索電腦，或透過本院內網進入圖書館首頁進行線上查詢。</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="question">圖書館有提供電腦使用嗎？<span class="icon">&#9660;</span></div>
-                <div class="answer"><p>圖書館設有電腦檢索區，提供讀者查詢資料庫及上網使用。請遵守相關使用規定。</p></div>
-            </div>
+            <ul class="menu-list">
+                <li data-search-term="寄物須知">
+                    <a href="#">寄物須知</a>
+                    <div class="collapsible-content">
+                        <p>持職別證(或實習證)，至流通台借鑰匙。<br>請愛惜使用，櫃內勿放置飲料。<br>※ 請於當日閉館前取出個人物品，不可存放過夜，否則需繳處理費每日5元。</p>
+                    </div>
+                </li>
+                <li data-search-term="電子期刊">
+                    <a href="#">電子期刊</a>
+                    <div class="collapsible-content">
+                        <p><strong>Q1 如何查知本館是否有某本期刊?</strong><br>透過圖書館首頁，圖書館資源整合快速檢索，利用書刊名查詢檢索；請注意期刊之相關註記資訊，包括供應商平台、全文年代及使用說明等。</p>
+                        <p><strong>Q2 進入電子期刊要看全文時，若需要帳號密碼，要輸入什麼？</strong><br>電子期刊皆以限定IP的方式於在院區內使用，無需密碼。在院外，請利用VPN方式連線；VPN設定請參考院外使用電子資源。</p>
+                        <p><strong>Q3 如何推薦訂購西文期刊？</strong><br>請至本館網頁 – 點選推薦圖書辦法，列印紙本『期刊介購單』，填寫後，交由圖書館辦理。</p>
+                        <p><strong>Q4 如何推薦訂購中文期刊？</strong><br>請至本館網頁 – 點選推薦圖書辦法，列印紙本『期刊介購單』，填寫後，交由圖書館辦理。</p>
+                    </div>
+                </li>
+                <li data-search-term="電子書">
+                    <a href="#">電子書</a>
+                    <div class="collapsible-content">
+                        <p><strong>Q1.查詢院內有哪些電子書?</strong><br>查詢特定電子書：透過圖書館首頁，圖書館資源整合快速檢索，利用書刊名查詢檢索。<br>電子書內文全文查詢：請分別連線至各電子書資料庫網站進行檢索。目前本館主要電子書來源為Harrison's Online、ClinicalKey等。</p>
+                        <p><strong>Q2.電子書之使用方式為何？</strong><br>Harrison's Online：可線上查詢閱覽及提供PDF下載。<br>ClinicalKey：內容有Elsevier出版之1,100多種醫學各分科電子書，大多可全文PDF下載。<br>ProQuest 電子書：約有12,000種電子書，若要雲端儲存或整本下載，請先於網站註冊。<br>SpringerNature、Washington Manual Book Collection 2021及Wiley電子書： 提供線上查詢閱覽及提供PDF下載(毋需帳密)。</p>
+                    </div>
+                </li>
+                <li data-search-term="館際合作">
+                    <a href="#">館際合作</a>
+                    <div class="collapsible-content">
+                        <p><strong>Q1 館際合作提供那些服務?</strong><br>向他館申請複印期刊，國內及國外均可提供複印服務。圖書部份則依各合作館政策不同而有不同作法提供外借。</p>
+                        <p><strong>Q2 如何申請館際合作?</strong><br>請依下列步驟進行：<br>a.查詢本館電子資源系統，確定本館有無該本期刊。<br>b.查全國期刊聯合目錄暨館際合作系統，確定他館館藏所在。<br>c.在館際合作系統上正確填寫『申請單』。<br>d.等候通知取件。</p>
+                        <p><strong>Q3 費用如何計算?</strong><br>本院同仁(含實習學生)申請館際合作複印費用由院方支付，申請圖書借閱者以被申請館收費標準自行付費；開業醫師一律自行支付。</p>
+                    </div>
+                </li>
+                <li data-search-term="資料庫">
+                    <a href="#">資料庫</a>
+                    <div class="collapsible-content">
+                        <p><strong>Q1圖書館舉辦哪些資訊檢索課程?</strong><br>配合各部科資訊檢索需求，規劃多種課程，包含圖書館使用介紹及資料庫使用操作等教育訓練。課程訊息會公布於本館網頁最新消息並寄發全院Email。</p>
+                        <p><strong>Q2 資料庫操作有提供數位學習課程嗎?</strong><br>請進入中榮e學網，於"課程與學習資源"項下, 點選圖書館課程即可找到相關課程資訊。</p>
+                    </div>
+                </li>
+                <li data-search-term="本館館藏">
+                    <a href="http://172.22.250.132/webopac/Jycx.aspx?dc=1&fc=1&n=8" target="_blank">本館館藏</a>
+                    <div class="collapsible-content">
+                        <p>點此前往查詢本館館藏，此為內部網路連結，院外請先登入VPN。</p>
+                    </div>
+                </li>
+                <li data-search-term="院外連線方式說明">
+                    <a href="#">院外連線方式說明</a>
+                    <div class="collapsible-content">
+                        <p>第一次使用請先進行「VPN 下載與安裝」：<br>PC安裝說明：請至https://m.vghtc.gov.tw/ykncP下載自己電腦版本的VPN client並安裝。<br>手機安裝說明：於google play 商店或APPLE STORE 搜尋 「Ivanti Secure Access Client」即可。<br>設定伺服器URL(s)請填入:https://sslvpn.vghtc.gov.tw/e-learning</p>
+                        <p>VPN連線驗證帳密為「院內信箱帳號&信箱密碼」，只需要帳號不需要後面的 domain。<br>各職類實習學生帳密，請洽職類教師，或教學部(分機4354)。</p>
+                        <p>連線成功後，即可至圖書館首頁使用各項資源。<br>VPN安裝相關問題，請洽資訊室，分機2121。</p>
+                    </div>
+                </li>
+                <li data-search-term="空間及研究小間">
+                    <a href="#">空間及研究小間</a>
+                    <div class="collapsible-content">
+                        <p><strong>一日研究小間</strong><br>適合1-2人，僅限當日借還(8:30-18:30)，無法預約，借用請洽服務櫃檯，請遵守研究室使用須知。</p>
+                        <p><strong>第九會議室</strong><br>預約請至員工入口網>場地預約辦理。</p>
+                    </div>
+                </li>
+            </ul>
         </div>
         
-        <div class="faq-section">
-            <h3 class="faq-section-title">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/OOjs_UI_icon_wiki-medical.svg" alt="專業館藏與文獻">
-                專業館藏與文獻
+        <div class="section-container" data-search-term="職類館藏清單">
+            <h3 class="section-title">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/OOjs_UI_icon_wiki-medical.svg" alt="職類館藏清單">
+                職類館藏清單
             </h3>
-            <div class="faq-item">
-                <div class="question">如何使用 PubMed 資料庫？<span class="icon">&#9660;</span></div>
-                <div class="answer"><p>請確認您的電腦位於院內網域，或使用圖書館提供的校外連線服務。進入PubMed網站後即可進行查詢。</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="question">如何申請文獻傳遞服務？<span class="icon">&#9660;</span></div>
-                <div class="answer"><p>若本館無您所需的文獻，可至圖書館櫃台或透過線上表單申請文獻傳遞服務。</p></div>
-            </div>
+            <ul class="menu-list">
+                <li><a href="https://www.vghtc.gov.tw/UnitPage/UnitContentView?WebMenuID=797d528a-c4e8-41b5-9837-37741f0d047c&UnitID=59088bbb-cf56-474a-be6c-e6944c82c61c&UnitDefaultTemplate=1" target="_blank">點此前往</a></li>
+            </ul>
         </div>
     </div>
 
     <div class="no-results" id="noResultsMessage">
-        <p>抱歉，找不到符合您搜尋的問題。</p>
+        <p>抱歉，找不到符合您搜尋的服務項目。</p>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const question = item.querySelector('.question');
-                question.addEventListener('click', () => {
-                    item.classList.toggle('active');
+            const searchInput = document.getElementById('searchInput');
+            const menuLinks = document.querySelectorAll('.menu-list li a');
+            const allItems = document.querySelectorAll('.section-container, .menu-list li');
+            const noResultsMessage = document.getElementById('noResultsMessage');
+
+            // Toggle content visibility
+            menuLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    const parentLi = link.closest('li');
+                    const collapsibleContent = parentLi.querySelector('.collapsible-content');
+                    
+                    if (collapsibleContent) {
+                        event.preventDefault();
+                        collapsibleContent.classList.toggle('open');
+                    }
                 });
             });
 
-            const searchInput = document.getElementById('searchInput');
+            // Search functionality
             searchInput.addEventListener('input', (event) => {
                 const query = event.target.value.toLowerCase().trim();
-                const sections = document.querySelectorAll('.faq-section');
-                const noResultsMessage = document.getElementById('noResultsMessage');
                 let foundMatch = false;
 
-                sections.forEach(section => {
-                    let sectionHasVisibleItems = false;
-                    const items = section.querySelectorAll('.faq-item');
-                    
-                    items.forEach(item => {
-                        const questionText = item.querySelector('.question').textContent.toLowerCase();
-                        const answerText = item.querySelector('.answer').textContent.toLowerCase();
-                        
-                        if (questionText.includes(query) || answerText.includes(query)) {
+                allItems.forEach(item => {
+                    const searchTerm = item.getAttribute('data-search-term');
+                    const textContent = item.textContent.toLowerCase();
+
+                    if (query === '') {
+                        item.style.display = '';
+                    } else {
+                        if (searchTerm && searchTerm.includes(query) || textContent.includes(query)) {
                             item.style.display = 'block';
-                            sectionHasVisibleItems = true;
                             foundMatch = true;
                         } else {
                             item.style.display = 'none';
                         }
-                    });
-
-                    if (query === '' || sectionHasVisibleItems) {
-                        section.style.display = 'block';
-                    } else {
-                        section.style.display = 'none';
                     }
                 });
 
